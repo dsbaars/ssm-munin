@@ -39,7 +39,7 @@ define munin::snmp_target (
     }
 
     if $export_node == 'enabled' {
-      @@munin::master::node_definition{ $fqn:
+      @@munin::master::node_definition{ $title:
         address         => $node_address,
         mastername      => $mastername,
         config          => [],
