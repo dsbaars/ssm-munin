@@ -5,7 +5,7 @@
 #
 define munin::snmp_target (
   $host=$title,
-  $snmp_version=2c,
+  $snmp_version=2,
   $snmp_community='public',
   $snmp_port=161,
   $snmp_username=undef,
@@ -29,8 +29,10 @@ define munin::snmp_target (
     }
 
     $config_name = "snmp_${host}_*"
+    $label = "snmp_${host}_*"
     $config = [
       "env.community ${snmp_community}"
+      "env.community ${snmp_version}"
     ]
 
     file{ "${munin::node::config_root}/plugin-conf.d/snmp_${host}.conf":
