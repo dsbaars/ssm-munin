@@ -22,7 +22,7 @@ define munin::snmp_target (
     validate_string($snmp_community)
     validate_re($snmp_version, [ '1', '2c', '3'])
 
-    exec { 'create symlinks':
+    exec { "create symlinks for SNMP target ${host}":
       command   => "munin-node-configure --shell --snmp ${snmp_host} --snmpversion ${snmp_version} --snmpcommunity ${snmp_community} | sh",
       path      => $munin_node_configure_path,
       logoutput => true,
