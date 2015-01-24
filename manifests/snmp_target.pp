@@ -31,7 +31,7 @@ define munin::snmp_target (
     $config_name = "snmp_${host}_*"
     $label = "snmp_${host}_*"
     $config = [
-      "env.community ${snmp_community}"
+      "env.community ${snmp_community}",
       "env.community ${snmp_version}"
     ]
 
