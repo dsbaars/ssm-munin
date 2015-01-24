@@ -21,13 +21,20 @@ define munin::master::node_definition (
   $address,
   $mastername='',
   $config=[],
+  $node_is_virtual=false
 )
 {
+  validate_boolean($node_is_virtual)
   validate_string($address)
   validate_array($config)
 
-  $filename=sprintf('/etc/munin/munin-conf.d/node.%s.conf',
-                    regsubst($name, '[^[:alnum:]\.]', '_', 'IG'))
+  if ($node_is_virtual) {
+    $filename=sprintf('/etc/munin/munin-conf.d/node.%s.virtual.conf',
+                      regsubst($name, '[^[:alnum:]\.]', '_', 'IG'))
+  } else {
+      $filename=sprintf('/etc/munin/munin-conf.d/node.%s.conf',
+                        regsubst($name, '[^[:alnum:]\.]', '_', 'IG'))
+  }
 
   file { $filename:
     content => template('munin/master/node.definition.conf.erb')

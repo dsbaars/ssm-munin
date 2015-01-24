@@ -1,7 +1,7 @@
 # Munin master configuration fragment for <%= title %>
 #
 # This file is handled by puppet, all modifications will be lost
-
+<% if @node_is_snmp != nil %># Note: This is a virtual node definition (SNMP)<% end %>
 [<%= @title %>]
   address <%= @address %>
 <% Array(@config).each do |line| -%>

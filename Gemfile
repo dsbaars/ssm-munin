@@ -5,6 +5,7 @@ group :test do
   gem 'puppet', ENV['PUPPET_VERSION'] || '~> 3.7.0'
   gem 'rspec-puppet', :git => 'https://github.com/rodjek/rspec-puppet.git', :ref => 'v2.0.0'
   gem 'puppetlabs_spec_helper'
+  gem 'rspec', '< 3.0.0'
 end
 
 group :development do
