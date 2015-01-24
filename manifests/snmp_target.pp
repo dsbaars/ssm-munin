@@ -42,7 +42,9 @@ define munin::snmp_target (
       @@munin::master::node_definition{ $title:
         address         => $node_address,
         mastername      => $mastername,
-        config          => [],
+        config          => [
+          'use_node_name no'
+        ],
         tag             => [ "munin::master::${mastername}" ],
         node_is_virtual => true
       }
