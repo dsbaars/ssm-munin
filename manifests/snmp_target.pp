@@ -16,7 +16,7 @@ define munin::snmp_target (
   $munin_node_configure_path='/usr/sbin/',
   $node_address='127.0.0.1',
   $mastername='',
-  $export_node=true
+  $export_node='enabled'
   ) {
     validate_string($host)
     validate_string($snmp_community)
@@ -24,12 +24,11 @@ define munin::snmp_target (
 
     exec { "create symlinks for SNMP target ${host}":
       command   => "munin-node-configure --shell --snmp ${snmp_host} --snmpversion ${snmp_version} --snmpcommunity ${snmp_community} | sh",
-      path      => $munin_node_configure_path,
+      path      => [$munin_node_configure_path, '/bin', '/sbin', '/usr/bin', '/usr/sbin'],
       logoutput => true,
     }
 
-    $config_name = "snmp_${host}"
-    $label = "snmp_${host}_*"
+    $config_name = "snmp_${host}_*"
     $config = [
       "env.community ${snmp_community}"
     ]
