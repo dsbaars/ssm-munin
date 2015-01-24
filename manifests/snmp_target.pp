@@ -32,7 +32,7 @@ define munin::snmp_target (
     $label = "snmp_${host}_*"
     $config = [
       "env.community ${snmp_community}",
-      "env.community ${snmp_version}"
+      "env.version ${snmp_version}"
     ]
 
     file{ "${munin::node::config_root}/plugin-conf.d/snmp_${host}.conf":
