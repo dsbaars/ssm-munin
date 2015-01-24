@@ -24,7 +24,7 @@ define munin::master::node_definition (
   $node_is_virtual=false
 )
 {
-  validate_boolean($node_is_virtual)
+  validate_bool($node_is_virtual)
   validate_string($address)
   validate_array($config)
 
