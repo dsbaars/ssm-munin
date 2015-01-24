@@ -38,6 +38,7 @@ define munin::snmp_target (
     file{ "${munin::node::config_root}/plugin-conf.d/snmp_${host}.conf":
       ensure  => present,
       content => template('munin/plugin_conf.erb'),
+      notify  => Service[$munin::node::service_name],
     }
 
     if $export_node == 'enabled' {
